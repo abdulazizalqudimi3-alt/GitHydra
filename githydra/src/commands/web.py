@@ -22,9 +22,8 @@ def web_cmd(port, no_browser, debug):
     console = Console()
     
     try:
-        # Import and run the Flask app
-        sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', 'web'))
-        from web.app import run_web_server
+        # Import and run the FastAPI app
+        from githydra.web.app import run_web_server
         
         console.print(Panel.fit(
             "[bold cyan]🚀 GitHydra Web Dashboard[/bold cyan]\n"
@@ -45,7 +44,7 @@ def web_cmd(port, no_browser, debug):
         
     except ImportError as e:
         console.print(f"[bold red]Error:[/bold red] {str(e)}", style="red")
-        console.print("[yellow]Tip:[/yellow] Make sure Flask is installed: pip install flask", style="yellow")
+        console.print("[yellow]Tip:[/yellow] Make sure FastAPI and Uvicorn are installed: pip install fastapi uvicorn", style="yellow")
         sys.exit(1)
     except Exception as e:
         console.print(f"[bold red]Error starting web server:[/bold red] {str(e)}", style="red")

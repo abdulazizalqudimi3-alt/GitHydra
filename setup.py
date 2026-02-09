@@ -51,6 +51,10 @@ setup(
         'rich>=13.7.0',
         'pygithub>=2.8.0',
         'tqdm>=4.65.0',
+        'fastapi',
+        'uvicorn',
+        'jinja2',
+        'google-genai',
     ],
     entry_points={
         'console_scripts': [
