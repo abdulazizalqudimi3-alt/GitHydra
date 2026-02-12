@@ -1,0 +1,53 @@
+{
+  "name": "githydra-vscode",
+  "displayName": "GitHydra",
+  "description": "Comprehensive Git automation tool with beautiful terminal UI and web dashboard",
+  "version": "1.0.0",
+  "publisher": "AbdulazizAlqudimi",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "githydra-explorer",
+          "title": "GitHydra",
+          "icon": "media/icon.png"
+        }
+      ]
+    },
+    "views": {
+      "githydra-explorer": [
+        {
+          "type": "webview",
+          "id": "githydra.sidebar",
+          "name": "GitHydra Dashboard"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "githydra.startServer",
+        "title": "GitHydra: Start Server"
+      },
+      {
+        "command": "githydra.stopServer",
+        "title": "GitHydra: Stop Server"
+      },
+      {
+        "command": "githydra.openDashboard",
+        "title": "GitHydra: Open Web Dashboard"
+      }
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^16.18.34",
+    "@types/vscode": "^1.75.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "axios": "^1.4.0"
+  }
+}
