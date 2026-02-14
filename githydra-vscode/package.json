@@ -4,6 +4,10 @@
   "description": "Comprehensive Git automation tool with beautiful terminal UI and web dashboard",
   "version": "1.0.0",
   "publisher": "AbdulazizAlqudimi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alqudimi/GitHydra"
+  },
   "engines": {
     "vscode": "^1.75.0"
   },
