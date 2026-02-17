@@ -11,10 +11,12 @@ import threading
 import time
 
 @click.command('web', help='Launch GitHydra web dashboard')
+@click.argument('path', default='.', type=click.Path(exists=True, file_okay=False, dir_okay=True))
 @click.option('--port', '-p', default=5000, help='Port to run the web server on')
 @click.option('--no-browser', is_flag=True, help='Don\'t open browser automatically')
-@click.option('--debug', is_flag=True, help='Run in debug mode')
-def web_cmd(port, no_browser, debug):
+@click.option('--mode', type=click.Choice(['dev', 'prod']), default='prod', help='Run in development or production mode')
+@click.option('--config', 'config_path', type=click.Path(exists=True), help='Path to a custom configuration file')
+def web_cmd(path, port, no_browser, mode, config_path):
     """Launch the GitHydra web dashboard"""
     from rich.console import Console
     from rich.panel import Panel
@@ -27,7 +29,8 @@ def web_cmd(port, no_browser, debug):
         
         console.print(Panel.fit(
             "[bold cyan]🚀 GitHydra Web Dashboard[/bold cyan]\n"
-            f"[yellow]Starting server on port {port}...[/yellow]",
+            f"[yellow]Starting server on port {port}...[/yellow]\n"
+            f"[yellow]Project path: {os.path.abspath(path)}[/yellow]",
             border_style="cyan"
         ))
         
@@ -40,7 +43,7 @@ def web_cmd(port, no_browser, debug):
             threading.Thread(target=open_browser, daemon=True).start()
         
         # Run the web server
-        run_web_server(repo_path='.', port=port, debug=debug)
+        run_web_server(repo_path=path, port=port, mode=mode, config_path=config_path)
         
     except ImportError as e:
         console.print(f"[bold red]Error:[/bold red] {str(e)}", style="red")
